@@ -32,7 +32,7 @@ export const Header = styled.header`
   }
 `;
 
-export const Lista = styled.section`
+export const List = styled.section`
   display: flex;
   flex-direction: column;
   gap: 10px;
