@@ -5,7 +5,6 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useShoppingCartContext } from "common/contexts/ShoppingCart";
 import { UserContext } from "common/contexts/User";
-import { ShoppingCartContext } from "../../common/contexts/ShoppingCart";
 
 function Product({ name, photo, id, value, unit }) {
   const {
@@ -13,8 +12,7 @@ function Product({ name, photo, id, value, unit }) {
     addProduct,
     removeProduct,
     valueTotal,
-  } = useContext(ShoppingCartContext);
-  //useShoppingCartContext();
+  } = useShoppingCartContext();
   const { balance } = useContext(UserContext);
   const itemInShoppingCart = shoppingCart.find((item) => item.id === id);
 

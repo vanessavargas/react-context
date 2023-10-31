@@ -2,46 +2,20 @@ import { createContext, useContext, useEffect, useState } from "react";
 import  usePayment  from "./Payment";
 import { UserContext } from "./User";
 
-export const ShoppingCartContext = createContext();
+const ShoppingCartContext = createContext();
 ShoppingCartContext.displayName = "ShoppingCart";
 
-export function ShoppingCartProvider({ children }) {
+export const ShoppingCartProvider = ({ children }) => {
   const [shoppingCart, setShoppingCart] = useState([]);
-  const [quantityItems, setQuantityItems] = useState(0);
-  const [valueTotal, setValueTotal] = useState(0);
-
   return (
-    <ShoppingCartContext.Provider
-      value={{
-        shoppingCart,
-        setShoppingCart,
-        quantityItems,
-        setQuantityItems,
-        valueTotal,
-        setValueTotal,
-      }}
-    >
+    <ShoppingCartContext.Provider value={{ shoppingCart, setShoppingCart }}>
       {children}
     </ShoppingCartContext.Provider>
-  );
-}
+  )
+};
 
-export function useShoppingCartContext() {
-  const {
-    shoppingCart,
-    setShoppingCart,
-    quantityItems,
-    setQuantityItems,
-    valueTotal,
-    setValueTotal,
-  } = useContext(ShoppingCartContext);
-
-  const { 
-    balance, 
-    setBalance 
-} = useContext(UserContext);
-
-  const { paymentMethod } = usePayment();
+export const useShoppingCartContext = () => {
+  const { shoppingCart, setShoppingCart } = useContext(ShoppingCartContext);
 
   const changeQuantity = (id, quantity) =>
     shoppingCart.map((item) => {
@@ -49,53 +23,34 @@ export function useShoppingCartContext() {
       return item;
     });
 
+    
   function addProduct(newProduct) {
-    const haveProduct = shoppingCart.some((item) => item.id === newProduct.id);
-    let newShoppingCart = [...shoppingCart];
-    if (!haveProduct) {
+    const haveProduct = shoppingCart.some(itemShoppingCart => itemShoppingCart.id === newProduct.id);
+    if(!haveProduct) {
       newProduct.quantity = 1;
-      newShoppingCart.push(newProduct);
-      return setShoppingCart(newShoppingCart);
+      return setShoppingCart(previewShoppingCart =>
+        [...previewShoppingCart, newProduct]
+      )
     }
-    newShoppingCart = changeQuantity(newProduct.id, 1);
-    setShoppingCart(newShoppingCart);
+    setShoppingCart(changeQuantity(newProduct.id, 1));
   }
 
   function removeProduct(id) {
     const product = shoppingCart.find((item) => item.id === id);
     const lastProduct = product.quantity === 1;
-    let newShoppingCart;
 
     if (lastProduct) {
-      newShoppingCart = newShoppingCart.filter((item) => item.id !== id);
-      return setShoppingCart(newShoppingCart);
+      return setShoppingCart(previewShoppingCart => previewShoppingCart.filter(itemShoppingCart =>
+        itemShoppingCart.id !== id));
     }
-    newShoppingCart = changeQuantity(id, -1);
-    setShoppingCart(newShoppingCart);
+    setShoppingCart(changeQuantity(id, -1));
   }
 
-  function buyProduct() {
-    setShoppingCart([]);
-    setBalance(balance - valueTotal);
-  }
-
-  useEffect(() => {
-    let { newQuantity, newTotal } = shoppingCart.reduce(
-      (count, newItem) => ({
-        newQuantity: count.newQuantity + newItem.quantity,
-        newTotal: count.newTotal + (newItem.value * newItem.quantity),
-      }),
-      { newQuantity: 0, newTotal: 0 });
-      setQuantityItems(newQuantity);
-      setValueTotal(newTotal * paymentMethod.fees);
-  }, [shoppingCart, paymentMethod, setQuantityItems, setValueTotal]);
 
   return {
     shoppingCart,
+    setShoppingCart,
     addProduct,
-    removeProduct,
-    quantityItems,
-    valueTotal,
-    buyProduct,
-  };
+    removeProduct
+  }
 }
