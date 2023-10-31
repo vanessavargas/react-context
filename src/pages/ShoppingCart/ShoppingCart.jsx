@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "common/contexts/User";
 import { usePayment } from "common/contexts/Payment";
 
-function ShoppingCart() {
-  const {
+export default function ShoppingCart() {
+  /* const {
     shoppingCart,
     quantityItems,
     buyItems,
@@ -27,15 +27,15 @@ function ShoppingCart() {
     typesPayment
   } = usePayment();
 
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false); */
   const navigate = useNavigate();
-  const total = useMemo(() => balance, valueTotal, [balance, valueTotal]);
-
+  /* const total = useMemo(() => balance, valueTotal, [balance, valueTotal]);
+ */
   return (
     <Container>
       <ToGoBack onClick={navigate} />
       <h2>Shopping Cart</h2>
-      {shoppingCart.map((product) => (
+      {/* {shoppingCart.map((product) => (
         <Product
         {...product}
         key={product.id}
@@ -93,9 +93,7 @@ function ShoppingCart() {
         <Alert onClose={() => setOpenSnackbar(false)} severity="success">
           Purchase made successfully!
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </Container>
   );
 }
-
-export default ShoppingCart;

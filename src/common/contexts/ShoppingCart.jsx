@@ -5,7 +5,7 @@ import { UserContext } from "./User";
 const ShoppingCartContext = createContext();
 ShoppingCartContext.displayName = "ShoppingCart";
 
-export default function ShoppingCartProvider({ children }) {
+export function ShoppingCartProvider({ children }) {
   const [shoppingCart, setShoppingCart] = useState([]);
   const [quantityItems, setQuantityItems] = useState(0);
   const [valueTotal, setValueTotal] = useState(0);

@@ -7,7 +7,7 @@ import { useShoppingCartContext } from "common/contexts/ShoppingCart";
 import { UserContext } from "common/contexts/User";
 
 function Product({ name, photo, id, value, unit }) {
-  const {
+  /* const {
     shoppingCart,
     addProduct,
     removeProduct,
@@ -15,7 +15,7 @@ function Product({ name, photo, id, value, unit }) {
   } = useShoppingCartContext();
   const { balance } = useContext(UserContext);
   const itemInShoppingCart = shoppingCart.find((item) => item.id === id);
-
+ */
   return (
     <Container>
       <div>
@@ -25,7 +25,7 @@ function Product({ name, photo, id, value, unit }) {
         </p>
       </div>
       <div>
-        <IconButton
+        {/* <IconButton
           onClick={() => removeProduct(id)}
           disabled={!itemInShoppingCart || itemInShoppingCart.quantity === 0}
           color="secondary"
@@ -48,7 +48,7 @@ function Product({ name, photo, id, value, unit }) {
           color="primary"
         >
           <AddIcon />
-        </IconButton>
+        </IconButton> */}
       </div>
     </Container>
   );

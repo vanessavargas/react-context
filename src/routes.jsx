@@ -1,5 +1,5 @@
 import React from "react";
-import ShoppingCartProvider from "common/contexts/ShoppingCart"; 
+import {ShoppingCartProvider} from "common/contexts/ShoppingCart"; 
 import UserProvider from "common/contexts/User"; 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fair from "pages/Fair";
