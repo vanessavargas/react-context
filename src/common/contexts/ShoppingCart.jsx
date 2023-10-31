@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import  usePayment  from "./Payment";
 import { UserContext } from "./User";
 
-const ShoppingCartContext = createContext();
+export const ShoppingCartContext = createContext();
 ShoppingCartContext.displayName = "ShoppingCart";
 
 export function ShoppingCartProvider({ children }) {
