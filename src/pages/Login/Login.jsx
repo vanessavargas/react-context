@@ -20,8 +20,9 @@ function Login() {
   return (
     <Container>
       <Title>
-        Enter your name
+      Welcome to our fair's shopping cart.
       </Title>
+      <p>Please enter your name and the amount available for your purchases, then click "Advance" to select your products.</p>
       <InputContainer>
         <InputLabel>
           Name

@@ -1,7 +1,16 @@
-import { Button, MenuItem, Select, Snackbar, InputLabel, Alert } from "@mui/material";
+import {
+  Button,
+  MenuItem,
+  Select,
+  Snackbar,
+  InputLabel,
+  Alert,
+} from "@mui/material";
 import { useShoppingCartContext } from "common/contexts/ShoppingCart";
+import { usePaymentContext } from "common/contexts/Payment";
+import { UserContext } from "common/contexts/User";
 import Product from "components/Product";
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState, useContext } from "react";
 import {
   Container,
   ToGoBack,
@@ -9,49 +18,41 @@ import {
   PaymentContainer,
 } from "./ShoppingCart.style";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "common/contexts/User";
-import { usePayment } from "common/contexts/Payment";
 
 export default function ShoppingCart() {
-  /* const {
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const {
     shoppingCart,
     quantityItems,
-    buyItems,
+    buyProduct,
+    valueTotal = 0
   } = useShoppingCartContext();
+  const { balance = 0 } = useContext(UserContext);
 
-  const { balance = 0} = useContext(UserContext);
-
-  const { 
+  const navigate = useNavigate();
+  const {
     paymentMethod,
     changePaymentMethod,
-    typesPayment
-  } = usePayment();
+    typesPayment,
+  } = usePaymentContext();
+  const total = useMemo(() => balance - valueTotal, [
+    balance, valueTotal]);
 
-  const [openSnackbar, setOpenSnackbar] = useState(false); */
-  const navigate = useNavigate();
-  /* const total = useMemo(() => balance, valueTotal, [balance, valueTotal]);
- */
   return (
     <Container>
-      <ToGoBack onClick={navigate} />
+      <ToGoBack onClick={() => navigate(-1)} />
       <h2>Shopping Cart</h2>
-      {/* {shoppingCart.map((product) => (
-        <Product
-        {...product}
-        key={product.id}
-       />
+      {shoppingCart.map((product) => (
+        <Product {...product} key={product.id} />
       ))}
       <PaymentContainer>
         <InputLabel>Form of payment</InputLabel>
         <Select
-        value={paymentMethod.id}
-        onChange={(event) => changePaymentMethod(event.target.value)}
+          value={paymentMethod.id}
+          onChange={(event) => changePaymentMethod(event.target.value)}
         >
-          {typesPayment.map(payment => (
-            <MenuItem
-            value={payment.id}
-            key={payment.id}
-            >
+          {typesPayment.map((payment) => (
+            <MenuItem value={payment.id} key={payment.id}>
               {payment.name}
             </MenuItem>
           ))}
@@ -73,7 +74,7 @@ export default function ShoppingCart() {
       </TotalContainer>
       <Button
         onClick={() => {
-          buyItems();
+          buyProduct();
           setOpenSnackbar(true);
         }}
         disabled={quantityItems === 0 || total < 0}
@@ -93,7 +94,7 @@ export default function ShoppingCart() {
         <Alert onClose={() => setOpenSnackbar(false)} severity="success">
           Purchase made successfully!
         </Alert>
-      </Snackbar> */}
+      </Snackbar>
     </Container>
   );
 }

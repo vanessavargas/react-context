@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const PaymentContext = createContext();
 PaymentContext.displayName = "Payment";
 
-export default function PaymentProvider({ children }) {
+export const PaymentProvider = ({ children }) => {
   const typesPayment = [
     {
       name: "Ticket",
@@ -41,7 +41,7 @@ export default function PaymentProvider({ children }) {
   );
 }
 
-export function usePayment() {
+export function usePaymentContext() {
   const { paymentMethod, setPaymentMethod, typesPayment } = useContext(
     PaymentContext
   );
