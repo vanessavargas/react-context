@@ -1,6 +1,7 @@
 import React from "react";
-import {ShoppingCartProvider} from "common/contexts/ShoppingCart"; 
-import UserProvider from "common/contexts/User"; 
+import { ShoppingCartProvider } from "common/contexts/ShoppingCart";
+import UserProvider from "common/contexts/User";
+import { PaymentProvider } from "common/contexts/Payment";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fair from "pages/Fair";
 import Login from "pages/Login";
@@ -14,7 +15,14 @@ function AppRoutes() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/fair" element={<Fair />} />
-            <Route path="/shoppingCart" element={<ShoppingCart />} />
+            <Route
+              path="/shoppingCart"
+              element={
+                <PaymentProvider>
+                  <ShoppingCart />
+                </PaymentProvider>
+              }
+            />
           </Routes>
         </UserProvider>
       </ShoppingCartProvider>
@@ -23,4 +31,3 @@ function AppRoutes() {
 }
 
 export default AppRoutes;
-

@@ -7,17 +7,18 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 
 export default function NavBar() {
-  //const { quantityItems } = useShoppingCartContext();
+  const { quantityItems } = useShoppingCartContext();
   const navigate = useNavigate();
 
   return (
     <Nav>
       <img src={logo} alt="logotipo da feira" />
       <IconButton
+        disabled={quantityItems === 0}
         onClick={() => navigate("/shoppingCart")}
-        /* disabled={quantityItems === 0} */
       >
-        <Badge badgeContent={0} /* {quantityItems} */ color="primary">
+        <Badge color="primary" 
+        badgeContent={quantityItems}>
           <ShoppingCartIcon />
         </Badge>
       </IconButton>

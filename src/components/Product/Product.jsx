@@ -6,7 +6,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useShoppingCartContext } from "common/contexts/ShoppingCart";
 import { UserContext } from "common/contexts/User";
 
-function Product({ name, photo, id, value, unit }) {
+function Product({ 
+  name, photo, id, value, unit }) {
   const {
     shoppingCart,
     addProduct,
