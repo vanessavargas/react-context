@@ -1,8 +1,8 @@
-# Project Fruit Market
+# Organic Harvest Market Project
 
 <div align="center">
 
-![Shopping Cart's Fair](assets/shoppingCar.png)
+![Shopping Cart's Fair](https://github.com/vanessavargas/react-context/blob/main/src/assets/shoppingCar.png)
 
 </div>
 
@@ -11,7 +11,7 @@ ContextAPI study project. Goals:
 - Efficient state sharing between components.
 - Reduced Prop Drilling - need to cascade props, simplifying code and maintenance.
 
-### Characteristics
+### Knowledges worked
 
 - Project developed in ReactJS, created with Vite.
 - Using Material UI and Styled Components for styling.
