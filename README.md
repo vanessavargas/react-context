@@ -19,6 +19,57 @@ ContextAPI study project. Goals:
 - Alias ​​configuration to facilitate imports.
 - Creating custom hooks.
 
+### Project Structure
+```
+├── public
+│ └── assets
+│   ├── broccoli.png
+│   ├── cucumber.png
+│   ├── potato.png
+│   ├── pumpkin.png
+│   └── tomato.png
+├── src
+│ ├── assets
+│ │ ├── background.jpg
+│ │ ├── logo.svg
+│ │ └── shoppingCar.png
+│ ├── common
+│ │ └── contexts
+│ │    ├── Payment.jsx
+│ │    ├── ShoppingCart.jsx
+│ │    └── User.jsx
+│ ├── components
+│ │ └── Product
+│ │    ├── Product.jsx
+│ │    ├── Product.styles.js
+│ │    └── index.js
+│ ├── pages
+│ │ ├── Fair
+│ │ | ├── NavBar
+│ │ | | ├── NavBar.jsx
+│ │ | | ├── NavBar.styles.js
+│ │ | | └── index.js
+│ │ | ├── Fair.jsx
+│ │ | ├── Fair.styles.js
+│ │ | ├── fair.json
+│ │ | └── index.js
+│ │ ├── Login
+│ │ | ├── Login.jsx
+│ │ | ├── Login.styles.js
+│ │ | └── index.js
+│ │ └── ShoppingCart
+│ │   ├── ShoppingCart.jsx
+│ │   ├── ShoppingCart.styles.js
+│ │   └── index.js
+│ ├── index.css
+│ ├── main.jsx
+│ └── routes.jsx
+├── .eslintrc.cjs
+├── .gitignore
+├── README.md
+├── package.json
+└── vite.config.js
+```
 </br>
 
 <div align="center">
